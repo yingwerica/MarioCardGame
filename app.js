@@ -50,19 +50,30 @@ grid.setAttribute('class', 'grid')
 game.appendChild(grid)
 
 // For each item in the cardsArray array...doing <div class="card" data-name="shell" style="background-image: url("img/blueshell.png");"></div>
-cardsArray.forEach((item) => {
-    // Create a div
+// cardsArray.forEach((item) => {
+//     // Create a div
+//     const card = document.createElement('div')
+  
+//     // Apply a card class to that div
+//     card.classList.add('card')
+  
+//     // Set the data-name attribute of the div to the cardsArray name
+//     card.dataset.name = item.name
+  
+//     // Apply the background image of the div to the cardsArray image
+//     card.style.backgroundImage = `url(${item.img})`
+  
+//     // Append the div to the grid section
+//     grid.appendChild(card)
+//   })
+
+  /////////////duplicate the 12 cards making 24 cards total so that we have 12 card pairs///////////////
+  let pairArray = cardsArray.concat(cardsArray)
+  pairArray.forEach((item) => {
     const card = document.createElement('div')
-  
-    // Apply a card class to that div
     card.classList.add('card')
-  
-    // Set the data-name attribute of the div to the cardsArray name
     card.dataset.name = item.name
-  
-    // Apply the background image of the div to the cardsArray image
     card.style.backgroundImage = `url(${item.img})`
-  
-    // Append the div to the grid section
     grid.appendChild(card)
-  })
+  }
+  )
