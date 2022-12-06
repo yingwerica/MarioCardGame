@@ -68,8 +68,11 @@ game.appendChild(grid)
 //   })
 
   /////////////duplicate the 12 cards making 24 cards total so that we have 12 card pairs///////////////
-  let pairArray = cardsArray.concat(cardsArray)
-  pairArray.forEach((item) => {
+  let gameCards = cardsArray.concat(cardsArray)
+  //shuffle the cards
+  gameCards.sort(() => Math.random() - 0.5);
+
+  gameCards.forEach((item) => {
     const card = document.createElement('div')
     card.classList.add('card')
     card.dataset.name = item.name
@@ -77,3 +80,7 @@ game.appendChild(grid)
     grid.appendChild(card)
   }
   )
+
+  
+
+  
