@@ -88,6 +88,7 @@ let secondGuess = '';
 let count = 0;
 let previousClick = null;
 let score = 0;
+let delay = 1200;
 
 // Add match CSS and increment the score
 const match = () => {
@@ -138,11 +139,11 @@ grid.addEventListener('click', function (event) {
             // and the first guess matches the second match...
             if (firstGuess === secondGuess) {
                 score++;
-                // run the match function
-                match();
-                resetCount();
+                //add delay after selections
+                setTimeout(match, delay);
+                setTimeout(resetCount, delay);
             }else {
-                resetCount();
+                setTimeout(resetCount, delay);
             }
         }
 
