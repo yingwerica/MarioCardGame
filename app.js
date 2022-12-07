@@ -42,7 +42,7 @@ let cardsArray = [{
 // Grab the div with an id of game
 const game = document.getElementById('game')
 
-// Create a section with a class of grid
+// Create a section with a class of grid, which is doing<section class="grid"></section>
 const grid = document.createElement('section')
 grid.setAttribute('class', 'grid')
 
@@ -67,20 +67,40 @@ game.appendChild(grid)
 //     grid.appendChild(card)
 //   })
 
-  /////////////duplicate the 12 cards making 24 cards total so that we have 12 card pairs///////////////
-  let gameCards = cardsArray.concat(cardsArray)
-  //shuffle the cards
-  gameCards.sort(() => Math.random() - 0.5);
+/////////////duplicate the 12 cards making 24 cards total so that we have 12 card pairs///////////////
+let gameCards = cardsArray.concat(cardsArray)
+//shuffle the cards
+gameCards.sort(() => Math.random() - 0.5);
 
-  gameCards.forEach((item) => {
+gameCards.forEach((item) => {
     const card = document.createElement('div')
     card.classList.add('card')
     card.dataset.name = item.name
     card.style.backgroundImage = `url(${item.img})`
     grid.appendChild(card)
-  }
-  )
+}
+)
 
+////////////////////////select cards////////////////////////////////
+// Add event listener to grid, and only allow two cards to be selected at a time
+let count = 0
+grid.addEventListener('click', function (event) {
+    // The event target is our clicked item
+    let clicked = event.target
   
+    // Do not allow the grid section itself to be selected; only select divs inside the grid
+    if (clicked.nodeName === 'SECTION') {
+      return
+    }
+    //limit the selected cards number to 2
+    if (count < 2) {
+        count++
+        // Add selected class
+    clicked.classList.add('selected')
+    }  
+  })
+
+ 
+
 
   
