@@ -98,6 +98,18 @@ const match = () => {
     document.getElementById("score").innerText = `Score: ${score}` 
   }
 
+//reset the guess count after two to continue the game
+const resetCount = () => {
+    firstGuess = '';
+    secondGuess = '';
+    count = 0;
+    //remove the selected CSS
+    let selected = document.querySelectorAll('.selected')
+    selected.forEach((card) => {
+      card.classList.remove('selected')
+    })
+}
+
 // Add event listener to grid, and only allow two cards to be selected at a time, conditions to evalue if there is a match
 grid.addEventListener('click', function (event) {
     // The event target is the clicked item
@@ -128,6 +140,9 @@ grid.addEventListener('click', function (event) {
                 score++;
                 // run the match function
                 match();
+                resetCount();
+            }else {
+                resetCount();
             }
         }
 
