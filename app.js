@@ -81,22 +81,56 @@ gameCards.forEach((item) => {
 }
 )
 
-////////////////////////select cards////////////////////////////////
-// Add event listener to grid, and only allow two cards to be selected at a time
-let count = 0
+////////////////////////select cards and if two selected are a match////////////////////////////////
+
+let firstGuess = '';
+let secondGuess = '';
+let count = 0;
+let previousClick = null;
+let score = 0;
+
+// Add match CSS and increment the score
+const match = () => {
+    let selected = document.querySelectorAll('.selected')
+    selected.forEach((card) => {
+      card.classList.add('match')
+    })
+    document.getElementById("score").innerText = `Score: ${score}` 
+  }
+
+// Add event listener to grid, and only allow two cards to be selected at a time, conditions to evalue if there is a match
 grid.addEventListener('click', function (event) {
-    // The event target is our clicked item
+    // The event target is the clicked item
     let clicked = event.target
   
     // Do not allow the grid section itself to be selected; only select divs inside the grid
-    if (clicked.nodeName === 'SECTION') {
+    // and click on the same card twice are not valid
+    if (clicked.nodeName === 'SECTION' || clicked === previousClick) {
       return
     }
     //limit the selected cards number to 2
     if (count < 2) {
-        count++
-        // Add selected class
-    clicked.classList.add('selected')
+        count++;
+        //assign first guess and second guess after clicks
+        if (count === 1) {
+            firstGuess = clicked.dataset.name;
+            // Add selected class
+            clicked.classList.add("selected");
+        } else {
+            secondGuess = clicked.dataset.name;
+            // Add selected class
+            clicked.classList.add("selected");
+        }
+         // If both guesses are not empty...
+        if (firstGuess !== '' && secondGuess !== '') {
+            // and the first guess matches the second match...
+            if (firstGuess === secondGuess) {
+                score++;
+                // run the match function
+                match();
+            }
+        }
+
     }  
   })
 
