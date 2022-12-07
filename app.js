@@ -82,7 +82,7 @@ gameCards.forEach((item) => {
     const front = document.createElement('div')
     front.classList.add('front')
     front.style.backgroundImage = `url('./images/questionmark.gif')`
-    
+
     //create back of the card
     const back = document.createElement('div')
     back.classList.add('back')
@@ -129,10 +129,16 @@ const resetCount = () => {
 grid.addEventListener('click', function (event) {
     // The event target is the clicked item
     let clicked = event.target
+    let test = document.getElementsByClassName('selected')
+    console.log
   
     // Do not allow the grid section itself to be selected; only select divs inside the grid
     // and click on the same card twice are not valid
-    if (clicked.nodeName === 'SECTION' || clicked === previousClick) {
+    // and disable the fliping of already matched cards
+    if (clicked.nodeName === 'SECTION' || 
+        clicked === previousClick ||
+        clicked.parentNode.classList.contains('match')
+    ) {
       return
     }
     //limit the selected cards number to 2
