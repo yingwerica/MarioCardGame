@@ -73,11 +73,24 @@ let gameCards = cardsArray.concat(cardsArray)
 gameCards.sort(() => Math.random() - 0.5);
 
 gameCards.forEach((item) => {
+    //create card element with the name dataset
     const card = document.createElement('div')
     card.classList.add('card')
     card.dataset.name = item.name
-    card.style.backgroundImage = `url(${item.img})`
+
+    //create front of card
+    const front = document.createElement('div')
+    front.classList.add('front')
+
+    //create back of the card
+    const back = document.createElement('div')
+    back.classList.add('back')
+    back.style.backgroundImage = `url(${item.img})`
+
+    //append card to grid, and front and back to each card
     grid.appendChild(card)
+    card.appendChild(front)
+    card.appendChild(back)
 }
 )
 
@@ -126,13 +139,13 @@ grid.addEventListener('click', function (event) {
         count++;
         //assign first guess and second guess after clicks
         if (count === 1) {
-            firstGuess = clicked.dataset.name;
+            firstGuess = clicked.parentNode.dataset.name; //each click is clicking on an inner div(front or back), but the name is on the outer div(card)
             // Add selected class
-            clicked.classList.add("selected");
+            clicked.parentNode.classList.add("selected");
         } else {
-            secondGuess = clicked.dataset.name;
+            secondGuess = clicked.parentNode.dataset.name;
             // Add selected class
-            clicked.classList.add("selected");
+            clicked.parentNode.classList.add("selected");
         }
          // If both guesses are not empty...
         if (firstGuess !== '' && secondGuess !== '') {

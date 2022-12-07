@@ -55,8 +55,8 @@ button {
 
 
 .card {
-  background-size: contain;
-  background-repeat: no-repeat;
+  /* background-size: contain;
+  background-repeat: no-repeat; */
   position: relative;
   transition: all .4s linear;
   transform-style: preserve-3d;
@@ -80,7 +80,7 @@ button {
 
 .front {
   z-index: 2;
-  background: #FAB942 url('../img/question.gif') no-repeat center center / contain;
+  background: #6589F9 url('./images/questionmark.gif') no-repeat center center / contain;
 }
 
 .back {
@@ -91,15 +91,13 @@ button {
   background-position: center center;
 }
 
-/* .selected {
-  transform: rotateY(180deg);
-} */
-
 .selected {
-    border: 4px solid rgb(255, 136, 0);
+  transform: rotateY(180deg);
 }
 
-.match {
-    border: 4px solid rgb(14, 204, 30);
+
+
+.match .front {
+    border: 4px solid rgb(213, 146, 11);
     background-image: none !important;
   }
