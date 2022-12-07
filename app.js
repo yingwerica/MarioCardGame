@@ -81,7 +81,8 @@ gameCards.forEach((item) => {
     //create front of card
     const front = document.createElement('div')
     front.classList.add('front')
-
+    front.style.backgroundImage = `url('./images/questionmark.gif')`
+    
     //create back of the card
     const back = document.createElement('div')
     back.classList.add('back')
