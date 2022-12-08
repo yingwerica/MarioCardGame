@@ -9,13 +9,11 @@ body {
   background: #6589F9;
 }
 
-.game {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
+#prompt {
+   text-align: center;
+   font-size: 30px;
+}
 
 .controls {
     display: flex;
@@ -43,6 +41,16 @@ button {
 .stats {
     color: #FFF;
     font-size: 14pt;
+}
+
+#player1,
+#player2 {
+    display: flex;
+}
+
+#game {
+    position: relative;
+    align-content: center;
 }
 
 .grid {
@@ -80,12 +88,13 @@ button {
 
 .front {
   z-index: 2;
-  background: #6589F9 no-repeat center center / contain;
+  /* background: #6589F9 no-repeat center center / contain; */
+  background: no-repeat center center / contain;
 }
 
 .back {
   transform: rotateY(180deg);
-  background-color: #6589F9;
+  /* background-color: #6589F9; */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;

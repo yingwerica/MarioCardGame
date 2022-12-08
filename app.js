@@ -95,7 +95,51 @@ gameCards.forEach((item) => {
 }
 )
 
-////////////////////////select cards and if two selected are a match////////////////////////////////
+
+//////////////////////input two players name////////////////////////
+let playerName1;
+document.getElementById('nameinput1').onclick = function() {
+    playerName1 = document.getElementById('text1').value 
+    console.log(playerName1)
+    let playername1 = document.createElement('p')
+    playername1.id = 'name1'
+    let player1 = document.getElementById('player1')
+    player1.appendChild(playername1)
+    document.getElementById('name1').innerText = playerName1
+    document.getElementById('mylabel1').remove()
+    document.getElementById('text1').remove()
+    document.getElementById('nameinput1').remove()
+}
+
+let playerName2;
+document.getElementById('nameinput2').onclick = function() {
+    playerName2 = document.getElementById('text2').value 
+    console.log(playerName2)
+    let playername2 = document.createElement('p')
+    playername2.id = 'name2'
+    let player2 = document.getElementById('player2')
+    player2.appendChild(playername2)
+    document.getElementById('name2').innerText = playerName2
+    document.getElementById('mylabel2').remove()
+    document.getElementById('text2').remove()
+    document.getElementById('nameinput2').remove()
+}
+
+//start button, disabled after clicked
+document.getElementById('start').onclick = function() {
+    if (document.getElementById('name1') == null || document.getElementById('name2') == null) {
+        document.getElementById('prompt').innerText = "Please enter two players' name."
+       
+    } else {
+        document.getElementById('prompt').innerText = `Game start! ${playerName1}, please click on any card to find a match.`
+        player1Move()
+        document.getElementById('start').disabled = true
+        document.getElementById('start').classList.add('disabled')
+    }
+}
+
+
+////////////////////////select cards and verify if two selected are a match////////////////////////////////
 
 let firstGuess = '';
 let secondGuess = '';
@@ -105,12 +149,12 @@ let score = 0;
 let delay = 1200;
 
 // Add match CSS and increment the score
-const match = () => {
+const matchOfPlayer1 = () => {
     let selected = document.querySelectorAll('.selected')
     selected.forEach((card) => {
       card.classList.add('match')
     })
-    document.getElementById("score").innerText = `Score: ${score}` 
+    document.getElementById("score1").innerText = `Score: ${score}` 
   }
 
 //reset the guess count after two to continue the game
@@ -126,11 +170,12 @@ const resetCount = () => {
 }
 
 // Add event listener to grid, and only allow two cards to be selected at a time, conditions to evalue if there is a match
-grid.addEventListener('click', function (event) {
+const player1Move = () => {
+    grid.addEventListener('click', function (event) {
     // The event target is the clicked item
     let clicked = event.target
-    let test = document.getElementsByClassName('selected')
-    console.log
+    // let test = document.getElementsByClassName('selected')
+    // console.log(test)
   
     // Do not allow the grid section itself to be selected; only select divs inside the grid
     // and click on the same card twice are not valid
@@ -146,7 +191,7 @@ grid.addEventListener('click', function (event) {
         count++;
         //assign first guess and second guess after clicks
         if (count === 1) {
-            firstGuess = clicked.parentNode.dataset.name; //each click is clicking on an inner div(front or back), but the name is on the outer div(card)
+            firstGuess = clicked.parentNode.dataset.name; //each click is clicking on an inner div(front), but the name is on the outer div(card)
             // Add selected class
             clicked.parentNode.classList.add("selected");
         } else {
@@ -160,7 +205,7 @@ grid.addEventListener('click', function (event) {
             if (firstGuess === secondGuess) {
                 score++;
                 //add delay after selections
-                setTimeout(match, delay);
+                setTimeout(matchOfPlayer1, delay);
                 setTimeout(resetCount, delay);
             }else {
                 setTimeout(resetCount, delay);
@@ -169,7 +214,7 @@ grid.addEventListener('click', function (event) {
 
     }  
   })
-
+}
  
 
 

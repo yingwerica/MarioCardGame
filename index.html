@@ -9,13 +9,30 @@
 </head>
 <body>
     <div class="board">
+        <div id="prompt">Welcome to Mario's Memory Game! Please enter your names to continue.</div><br>
         <div class="controls">
-            <button>Start</button>
-            <div class="stats">
-                <div id="score">Score: 0</div>
-                <div id="timer">time: 0 sec</div>
+            <div id="player1">
+                <label id="mylabel1">Enter your name:</label><br>
+                <input type="text" id="text1"><br>
+                <button type="button" id="nameinput1">Submit</button>
             </div>
+            <div class="stats">
+                <div id="score1">Score: 0</div>
+                <div id="timer1">time: 0 sec</div>
+            </div>
+            <div id="player2">
+                <label id="mylabel2">Enter your name:</label><br>
+                <input type="text" id="text2"><br>
+                <button type="button" id="nameinput2">Submit</button>
+            </div>
+            <div class="stats">
+                <div id="score2">Score: 0</div>
+                <div id="timer2">time: 0 sec</div>
+            </div>
+            <br>
+            <button id="start">Start</button>
         </div>
+        <br>
         <div id="game">
          
         </div>
