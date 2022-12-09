@@ -7,6 +7,8 @@
 body {
   margin: 20px 0;
   background: #6589F9;
+  /* background-image:url('./images/background.jpg');
+  background-repeat: no-repeat; */
 }
 
 
@@ -63,13 +65,12 @@ button {
 
 
 .card {
-  /* background-size: contain;
-  background-repeat: no-repeat; */
   position: relative;
   transition: all .4s linear;
   transform-style: preserve-3d;
   margin: 5px;
   background-position: center;
+  cursor: pointer;
 }
 
 
