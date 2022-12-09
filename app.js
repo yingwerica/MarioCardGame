@@ -207,6 +207,50 @@ const winnerOfTheRound = () => {
     }
 }
 
+//////////timer between each first and second guess and reset timer////////
+let timeleft = 5;
+let timer;
+
+const resetTimer = () => {
+    if (currentPlayer === 1) {
+        document.getElementById("timer1").innerHTML = `Time: 5 sec`
+    } else {
+        document.getElementById("timer2").innerHTML = `Time: 5 sec`
+    }
+}
+
+//timer count down
+function countdown() {
+    //time's up, still have not made the second guess
+  if(timeleft <= 0 && count === 1 && currentPlayer === 1){
+    clearInterval(timer);
+    document.getElementById("timer1").innerHTML = "Time is up!";
+    prompt.innerText = `Dang! Time's up. Now it's ${playerName2}'s turn.`
+    promptVisible = 'visible'
+    //timer reset must be earlier than player reset,since timer is reading the current player
+    setTimeout(resetTimer, 1500)
+    setTimeout(()=>{currentPlayer = 2}, 2000)
+    timeleft = 5
+    resetCount()
+    
+  } else if (timeleft <= 0 && count === 1 && currentPlayer === 2) {
+    clearInterval(timer);
+    document.getElementById("timer2").innerHTML = "Time is up!";
+    prompt.innerText = `Dang! Time's up. Now it's ${playerName1}'s turn.`
+    promptVisible = 'visible'
+    setTimeout(resetTimer, 1500)
+    setTimeout(()=>{currentPlayer = 1}, 2000)
+    timeleft = 5
+    resetCount()
+    
+  } else if(timeleft > 0 && count === 1 && currentPlayer === 1){
+    document.getElementById("timer1").innerHTML = `Time: ${timeleft} sec`;
+  } else if(timeleft > 0 && count === 1 && currentPlayer === 2){
+    document.getElementById("timer2").innerHTML = `Time: ${timeleft} sec`;
+  }
+  timeleft -= 1;
+}
+
 ////////////////////////////game round////////////////////////////////
 // Add event listener to grid, and only allow two cards to be selected at a time, conditions to evalue if there is a match
 const gameRound = () => {
@@ -233,10 +277,17 @@ const gameRound = () => {
             count++;
             //assign first guess and second guess after clicks
             if (count === 1) {
+                //add timer
+                timer = setInterval(countdown, 1000)
+
                 firstGuess = clicked.parentNode.dataset.name; //each click is clicking on an inner div(front), but the name is on the outer div(card)
                 // Add selected class
                 clicked.parentNode.classList.add("selected");
             } else {
+                //stop the timer
+                clearInterval(timer);
+                timeleft = 5;
+
                 secondGuess = clicked.parentNode.dataset.name;
                 // Add selected class
                 clicked.parentNode.classList.add("selected");
@@ -256,20 +307,30 @@ const gameRound = () => {
                     //add delay after selections
                     setTimeout(matchOfCards, delay);
                     setTimeout(resetCount, delay);
+
+                    //reset the timer display
+                    setTimeout(resetTimer, delay);
                     
                 }else {
                     //not a match, the other player's turn
                     if (currentPlayer === 1) {
                         prompt.innerText = `Oops! Not a match. Now it's ${playerName2}'s turn.`
                         promptVisible = 'visible'
-                        currentPlayer = 2  
+                        
+                        setTimeout(resetCount, delay);  
+                        setTimeout(resetTimer, 1500)
+                        setTimeout(()=>{currentPlayer = 2}, 2000) 
                     } else {
-                        prompt.innerText = `Oops!Not a match.Now it's ${playerName1}'s turn.`
+                        prompt.innerText = `Oops! Not a match.Now it's ${playerName1}'s turn.`
                         promptVisible = 'visible'
-                        currentPlayer = 1 
+                       
+                        setTimeout(resetCount, delay);
+                        setTimeout(resetTimer, 1500)
+                        setTimeout(()=>{currentPlayer = 1}, 2000)
                     }; 
                    
-                    setTimeout(resetCount, delay);    
+                   
+                     
                 }
             }
 
