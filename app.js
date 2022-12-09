@@ -153,7 +153,7 @@ document.getElementById('start').onclick = function() {
         prompt.innerText = "Please enter player's name."
        
     } else {
-        prompt.innerText = `Game start! ${playerName1}, please click on any card to find a match.`
+        prompt.innerText = `Game on!!  ${playerName1}, please click on any card to find a match.`
         gameRound()//disable cards clicking until game start
         document.getElementById('start').disabled = true
         document.getElementById('start').classList.add('disabled')
@@ -250,7 +250,7 @@ const gameRound = () => {
                     }else {
                         score2++;
                     }
-                    prompt.innerText = 'Bravo!You found a match.Go find more!'
+                    prompt.innerText = 'Bravo!!You found a match.Go find more!'
                     promptVisible = 'visible'
                    
                     //add delay after selections
@@ -260,7 +260,7 @@ const gameRound = () => {
                 }else {
                     //not a match, the other player's turn
                     if (currentPlayer === 1) {
-                        prompt.innerText = `Oops!Not a match.Now it's ${playerName2}'s turn.`
+                        prompt.innerText = `Oops! Not a match. Now it's ${playerName2}'s turn.`
                         promptVisible = 'visible'
                         currentPlayer = 2  
                     } else {

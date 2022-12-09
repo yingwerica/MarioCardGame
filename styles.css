@@ -4,18 +4,27 @@
   box-sizing: border-box;
 }
 
+body, html {
+    height: 100%;
+  }
+
 body {
+  height: 100%;
   margin: 20px 0;
-  background: #6589F9;
-  /* background-image:url('./images/background.jpg');
-  background-repeat: no-repeat; */
+  font-family: 'New Super Mario Font U', sans-serif;
+  background-image:url('./images/background.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 
 #prompt {
    text-align: center;
-   font-size: 30px;
+   font-size: 35pt;
+   padding-top: 20px;
 }
+
 
 .controls {
     display: flex;
@@ -26,14 +35,14 @@ body {
 }
 
 button {
-    background: #282A3A;
+    background: #a86013;
     color: #FFF;
     border-radius: 5px;
     padding: 10px 20px;
     border: 0;
     cursor: pointer;
-    font-family: Fredoka;
-    font-size: 18pt;
+    font-size: 30pt;
+    font-family: 'New Super Mario Font U', sans-serif;
 }
 
 .disabled {
@@ -42,7 +51,31 @@ button {
 
 .stats {
     color: #FFF;
-    font-size: 14pt;
+    font-size: 30pt;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#mylabel1,
+#mylabel2 {
+    font-size: 30pt;
+    padding-right: 20px;
+}
+
+#text1,
+#text2 {
+    font-size: 25pt;
+    width: 290px;
+    font-family: 'New Super Mario Font U', sans-serif;
+}
+
+
+#name1,
+#name2 {
+    font-size: 60px;
+    margin-top: 20px;
+    margin-bottom: 15px;
 }
 
 #player1,
