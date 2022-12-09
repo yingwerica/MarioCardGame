@@ -95,10 +95,24 @@ gameCards.forEach((item) => {
 }
 )
 
+////////////////variaties//////////
+let currentPlayer = 1;
+let firstGuess = '';
+let secondGuess = '';
+let count = 0;
+let previousClick = null;
+let score1 = 0;
+let score2 = 0;
+let delay = 1200;
+let promptVisible = document.getElementById('prompt').style.visibility
+let prompt = document.getElementById('prompt')
 
 //////////////////////input and display two players name////////////////////////
 let playerName1;
 document.getElementById('nameinput1').onclick = function() {
+    if (document.getElementById('text1').value == null || document.getElementById('text1').value == '') {
+        prompt.innerText =" Please enter your name to play."
+    }else {
     playerName1 = document.getElementById('text1').value 
     console.log(playerName1)
     //display the input in a <P> element
@@ -110,11 +124,15 @@ document.getElementById('nameinput1').onclick = function() {
     document.getElementById('mylabel1').remove()
     document.getElementById('text1').remove()
     document.getElementById('nameinput1').remove()
-   
+    promptVisible = 'hidden';
+    }
 }
 
 let playerName2;
 document.getElementById('nameinput2').onclick = function() {
+    if (document.getElementById('text2').value == null || document.getElementById('text2').value == '' ) {
+        prompt.innerText =" Please enter your name to play."
+    }else {
     playerName2 = document.getElementById('text2').value 
     console.log(playerName2)
     let playername2 = document.createElement('p')
@@ -125,35 +143,22 @@ document.getElementById('nameinput2').onclick = function() {
     document.getElementById('mylabel2').remove()
     document.getElementById('text2').remove()
     document.getElementById('nameinput2').remove()
+    promptVisible = 'hidden';
+    }
 }
 
 ///////////start game after valid names input, button disabled after clicked//////////
-
-let prompt = document.getElementById('prompt')
-
 document.getElementById('start').onclick = function() {
     if (document.getElementById('name1') == null || document.getElementById('name2') == null) {
-        prompt.innerText = "Please enter two players' name."
+        prompt.innerText = "Please enter player's name."
        
     } else {
         prompt.innerText = `Game start! ${playerName1}, please click on any card to find a match.`
-        gameRound()
+        gameRound()//disable cards clicking until game start
         document.getElementById('start').disabled = true
         document.getElementById('start').classList.add('disabled')
     }
 }
-
-
-
-let currentPlayer = 1;
-let firstGuess = '';
-let secondGuess = '';
-let count = 0;
-let previousClick = null;
-let score1 = 0;
-let score2 = 0;
-let delay = 1200;
-let promptVisible = document.getElementById('prompt').style.visibility
 
 
 // Add match CSS and increment the score
