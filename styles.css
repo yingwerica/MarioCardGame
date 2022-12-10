@@ -22,7 +22,8 @@ body {
 #prompt {
    text-align: center;
    font-size: 35pt;
-   padding-top: 20px;
+   padding-top: 35px;
+   padding-bottom: 10px;
 }
 
 

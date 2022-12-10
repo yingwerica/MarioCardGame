@@ -213,9 +213,9 @@ let timer;
 
 const resetTimer = () => {
     if (currentPlayer === 1) {
-        document.getElementById("timer1").innerHTML = `Time: 5 sec`
+        setTimeout(() => {document.getElementById("timer1").innerHTML = `Time: 5 sec`}, delay)
     } else {
-        document.getElementById("timer2").innerHTML = `Time: 5 sec`
+        setTimeout(() => {document.getElementById("timer2").innerHTML = `Time: 5 sec`}, delay)
     }
 }
 
@@ -258,15 +258,18 @@ const gameRound = () => {
         promptVisible = 'hidden'
         // The event target is the clicked item
         let clicked = event.target
+        console.log(clicked)
         // let test = document.getElementsByClassName('selected')
         // console.log(test)
       
         // Do not allow the grid section itself to be selected; only select divs inside the grid
-        // and click on the same card twice are not valid
+        // and click on the same card (front or back) twice is not valid
         // and disable the fliping of already matched cards
+        // and avoid odd case clicking on the card div causing grid rotate
         if (clicked.nodeName === 'SECTION' || 
-            clicked === previousClick ||
-            clicked.parentNode.classList.contains('match')
+            clicked.parentNode.classList.contains('selected') ||
+            clicked.parentNode.classList.contains('match') ||
+            clicked.classList.contains('card')    
             ) {
             return
         } 
@@ -293,7 +296,7 @@ const gameRound = () => {
                 clicked.parentNode.classList.add("selected");
             }
             // If both guesses are not empty...
-            if (firstGuess !== '' && secondGuess !== '') {
+            if (firstGuess && secondGuess) {
                 // if the first guess matches the second match
                 if (firstGuess === secondGuess) {
                     if (currentPlayer === 1){
@@ -310,30 +313,29 @@ const gameRound = () => {
 
                     //reset the timer display
                     setTimeout(resetTimer, delay);
+
+    
                     
                 }else {
                     //not a match, the other player's turn
                     if (currentPlayer === 1) {
                         prompt.innerText = `Oops! Not a match. Now it's ${playerName2}'s turn.`
                         promptVisible = 'visible'
-                        
+                    
                         setTimeout(resetCount, delay);  
-                        setTimeout(resetTimer, 1500)
-                        setTimeout(()=>{currentPlayer = 2}, 2000) 
+                        resetTimer()
+                        currentPlayer = 2
                     } else {
                         prompt.innerText = `Oops! Not a match.Now it's ${playerName1}'s turn.`
                         promptVisible = 'visible'
                        
-                        setTimeout(resetCount, delay);
-                        setTimeout(resetTimer, 1500)
-                        setTimeout(()=>{currentPlayer = 1}, 2000)
-                    }; 
-                   
-                   
-                     
+                        setTimeout(resetCount, delay);  
+                        resetTimer()
+                        currentPlayer = 1
+                    };                    
                 }
             }
-
+        
         }  
     })
 }
