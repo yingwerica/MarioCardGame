@@ -95,7 +95,7 @@ gameCards.forEach((item) => {
 }
 )
 
-////////////////variaties//////////
+////////////////variables//////////
 let currentPlayer = 1;
 let firstGuess = '';
 let secondGuess = '';

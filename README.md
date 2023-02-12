@@ -8,12 +8,12 @@
 5.  Multiple rounds to play<br />
 
 ## Game introduction<br />
-This is a DOM two-player card game. Each player filp two cards at a time to find a match. If a player found a match, the player's turn continues until no match. The Two players take turns following matching rule and each flip has 5 seconds time limit. After all cards are matched, the player who found more matches wins the game.<br />
+This is a DOM two-player card game. Each player filp two cards at a time to find a match. If a player found a match, the player's turn continues until no match. The Two players take turns following matching and time limit rules. After all cards are matched, the player who found more matches wins the game.<br />
 
 ## Additional features<br />
 1. Game start validation.<br />
 2. Guided messages for each move.<br />
-3. Implement timer for each flip and switch timer between players.<br />
+3. Implement timer between first and second flip and switch timer and score between players.<br />
 4. CSS to enhance user experiences.<br />
 
 ## Technical stretches<br />
