@@ -17,7 +17,7 @@ This is a DOM two-player card game. Each player filp two cards at a time to find
 4. CSS to enhance user experiences.<br />
 
 ## Technical stretches<br />
-Extra tests and debugging for edge cases and odd cases<br />
+Extra tests and debugging for functionality and odd cases<br />
 
 ## Live site: https://yingwerica.github.io/MarioCardGame/<br />
 

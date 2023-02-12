@@ -1,6 +1,7 @@
 *,
 *::before,
 *::after {
+  /* padding and border are included in the width and height */
   box-sizing: border-box;
 }
 
@@ -101,6 +102,7 @@ button {
 .card {
   position: relative;
   transition: all .4s linear;
+  /* child elements will preserve its 3D position */
   transform-style: preserve-3d;
   margin: 5px;
   background-position: center;
@@ -123,13 +125,11 @@ button {
 
 .front {
   z-index: 2;
-  /* background: #6589F9 no-repeat center center / contain; */
   background: no-repeat center center / contain;
 }
 
 .back {
   transform: rotateY(180deg);
-  /* background-color: #6589F9; */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;

@@ -67,7 +67,7 @@ game.appendChild(grid)
 //     grid.appendChild(card)
 //   })
 
-/////////////duplicate the 12 cards making 24 cards total so that we have 12 card pairs///////////////
+/////////////duplicate the 12 cards making 12 pairs total ///////////////
 let gameCards = cardsArray.concat(cardsArray)
 //shuffle the cards
 gameCards.sort(() => Math.random() - 0.5);
@@ -110,6 +110,7 @@ let prompt = document.getElementById('prompt')
 //////////////////////input and display two players name////////////////////////
 let playerName1;
 document.getElementById('nameinput1').onclick = function() {
+  // input validation
     if (document.getElementById('text1').value == null || document.getElementById('text1').value == '') {
         prompt.innerText =" Please enter your name to play."
     }else {
@@ -221,7 +222,7 @@ const resetTimer = () => {
 
 //timer count down
 function countdown() {
-    //time's up, still have not made the second guess
+    //time's up, but did not make the second guess yet
   if(timeleft <= 0 && count === 1 && currentPlayer === 1){
     clearInterval(timer);
     document.getElementById("timer1").innerHTML = "Time is up!";
